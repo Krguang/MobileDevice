@@ -64,6 +64,9 @@ void SystemClock_Config(void);
 
 /* USER CODE BEGIN 0 */
 
+uint16_t temp[128] = { 0 };
+uint8_t sendTemp[256] = { 0 };
+
 /* USER CODE END 0 */
 
 /**
@@ -74,6 +77,8 @@ void SystemClock_Config(void);
 int main(void)
 {
   /* USER CODE BEGIN 1 */
+
+
 
   /* USER CODE END 1 */
 
@@ -98,6 +103,8 @@ int main(void)
   MX_USART1_UART_Init();
   MX_I2S2_Init();
   /* USER CODE BEGIN 2 */
+  HAL_I2S_Receive_IT(&hi2s2, temp, 128);
+
 
   /* USER CODE END 2 */
 
@@ -109,12 +116,27 @@ int main(void)
   /* USER CODE END WHILE */
 
   /* USER CODE BEGIN 3 */
-	  HAL_GPIO_TogglePin(GPIOD, GPIO_PIN_8);
-	  HAL_Delay(50);
   }
   /* USER CODE END 3 */
 
 }
+
+void HAL_I2S_RxCpltCallback(I2S_HandleTypeDef *hi2s) {
+
+	if (hi2s->Instance == hi2s)
+	{
+
+		for (int i = 0; i < 128; i++)
+		{
+			sendTemp[i * 2] = temp[i] & 0xff;
+			sendTemp[i * 2 + 1] = temp[i]>>8;
+		}
+
+		HAL_UART_Transmit(&huart1, sendTemp, 256, 0xff);
+		HAL_I2S_Receive_IT(&hi2s2, temp, 128);
+	}
+}
+
 
 /**
   * @brief System Clock Configuration

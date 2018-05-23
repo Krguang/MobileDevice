@@ -661,6 +661,9 @@
 #ifndef __UDQ_FBIT__
 #define __UDQ_FBIT__ 64
 #endif
+#ifndef DEBUG
+#define DEBUG 1
+#endif
 #ifndef __INT8_TYPE__
 #define __INT8_TYPE__ signed char
 #endif
@@ -1174,9 +1177,6 @@
 #ifndef __ATOMIC_RELEASE
 #define __ATOMIC_RELEASE 3
 #endif
-#ifndef DEBUG
-#define DEBUG 1
-#endif
 #endif
 
 // --- Include directories begin --- //
@@ -1188,6 +1188,11 @@
 //$(TOOLCHAIN_ROOT)\lib\gcc\arm-eabi\6.2.0\include-fixed
 //$(TOOLCHAIN_ROOT)\arm-eabi\sys-include
 //$(TOOLCHAIN_ROOT)\arm-eabi\include
+//Inc
+//Drivers\CMSIS\Include
+//Drivers\CMSIS\Device\ST\STM32F4xx\Include
+//Drivers\STM32F4xx_HAL_Driver\Inc
+//Drivers\STM32F4xx_HAL_Driver\Inc\Legacy
 // --- Include directories end --- //
 
 

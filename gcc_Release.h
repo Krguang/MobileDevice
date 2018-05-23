@@ -206,6 +206,9 @@
 #ifndef __DEC32_EPSILON__
 #define __DEC32_EPSILON__ 1E-6DF
 #endif
+#ifndef __OPTIMIZE__
+#define __OPTIMIZE__ 1
+#endif
 #ifndef __CHAR_UNSIGNED__
 #define __CHAR_UNSIGNED__ 1
 #endif
@@ -256,6 +259,9 @@
 #endif
 #ifndef __SIZEOF_POINTER__
 #define __SIZEOF_POINTER__ 4
+#endif
+#ifndef NDEBUG
+#define NDEBUG 1
 #endif
 #ifndef __GCC_ATOMIC_CHAR16_T_LOCK_FREE
 #define __GCC_ATOMIC_CHAR16_T_LOCK_FREE 2
@@ -328,6 +334,9 @@
 #endif
 #ifndef __ULFRACT_MIN__
 #define __ULFRACT_MIN__ 0.0ULR
+#endif
+#ifndef RELEASE
+#define RELEASE 1
 #endif
 #ifndef __LDBL_HAS_QUIET_NAN__
 #define __LDBL_HAS_QUIET_NAN__ 1
@@ -573,9 +582,6 @@
 #endif
 #ifndef __UHA_FBIT__
 #define __UHA_FBIT__ 8
-#endif
-#ifndef __NO_INLINE__
-#define __NO_INLINE__ 1
 #endif
 #ifndef __SFRACT_MIN__
 #define __SFRACT_MIN__ (-0.5HR-0.5HR)
@@ -1174,12 +1180,6 @@
 #ifndef __ATOMIC_RELEASE
 #define __ATOMIC_RELEASE 3
 #endif
-#ifndef NDEBUG
-#define NDEBUG 1
-#endif
-#ifndef RELEASE
-#define RELEASE 1
-#endif
 #endif
 
 // --- Include directories begin --- //
@@ -1191,6 +1191,11 @@
 //$(TOOLCHAIN_ROOT)\lib\gcc\arm-eabi\6.2.0\include-fixed
 //$(TOOLCHAIN_ROOT)\arm-eabi\sys-include
 //$(TOOLCHAIN_ROOT)\arm-eabi\include
+//Inc
+//Drivers\CMSIS\Include
+//Drivers\CMSIS\Device\ST\STM32F4xx\Include
+//Drivers\STM32F4xx_HAL_Driver\Inc
+//Drivers\STM32F4xx_HAL_Driver\Inc\Legacy
 // --- Include directories end --- //
 
 
