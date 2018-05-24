@@ -39,6 +39,7 @@
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 #include "stm32f4xx_hal.h"
+#include "dma.h"
 #include "i2s.h"
 #include "usart.h"
 #include "gpio.h"
@@ -65,7 +66,7 @@ void SystemClock_Config(void);
 /* USER CODE BEGIN 0 */
 
 uint16_t rxTemp[128] = { 0 };
-uint16_t txTemp[128] = { 0 };
+uint16_t txTemp[128] = { 0x5555,0x5555,0x5555,0x5555,0x5555,0x5555,0x5555,0x5555,0x5555,0x5555 };
 uint8_t sendTemp[256] = { 0 };
 
 /* USER CODE END 0 */
@@ -101,10 +102,18 @@ int main(void)
 
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
+  MX_DMA_Init();
   MX_USART1_UART_Init();
   MX_I2S2_Init();
   /* USER CODE BEGIN 2 */
- // HAL_I2SEx_TransmitReceive_IT(&hi2s2, rxTemp, rxTemp, 128);
+
+  for (size_t i = 0; i < 128; i++)
+  {
+	  txTemp[i] = i;
+  }
+
+
+  
 
   /* USER CODE END 2 */
 
@@ -116,24 +125,16 @@ int main(void)
   /* USER CODE END WHILE */
 
   /* USER CODE BEGIN 3 */
-	 // HAL_I2SEx_TransmitReceive_IT(&hi2s2, rxTemp, rxTemp, 128);
-	  HAL_I2SEx_TransmitReceive(&hi2s2, txTemp, rxTemp, 128,0xff);
-
-	  
-
-	  HAL_Delay(20);
-	  HAL_UART_Transmit(&huart1, rxTemp, 128, 0xff);
-
+	  HAL_I2SEx_TransmitReceive_DMA(&hi2s2, txTemp, rxTemp, 128);
   }
   /* USER CODE END 3 */
 
 }
 
+void HAL_I2SEx_TxRxCpltCallback(I2S_HandleTypeDef *hi2s) {
 
-void HAL_I2SEx_TxRxCpltCallback(I2S_HandleTypeDef *hi2s)
-{
-	HAL_UART_Transmit(&huart1, rxTemp, 128, 0xff);
-	HAL_I2SEx_TransmitReceive_IT(&hi2s2, rxTemp, rxTemp, 128);
+	printf("hello\n");
+	HAL_I2SEx_TransmitReceive_DMA(&hi2s2, txTemp, rxTemp, 128);
 }
 
 /**

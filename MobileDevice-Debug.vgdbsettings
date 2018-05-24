@@ -70,7 +70,7 @@
         <ExtraParameters>
           <Frequency xsi:nil="true" />
           <BoostedFrequency xsi:nil="true" />
-          <ConnectUnderReset>false</ConnectUnderReset>
+          <ConnectUnderReset>true</ConnectUnderReset>
         </ExtraParameters>
         <LoadProgressGUIThreshold>131072</LoadProgressGUIThreshold>
         <ProgramMode>Enabled</ProgramMode>

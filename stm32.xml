@@ -53,7 +53,7 @@
     <AllDependencies>
       <ProjectDependency>
         <RelativePath>MobileDevice.gpdsc</RelativePath>
-        <Timestamp>131715507151890056</Timestamp>
+        <Timestamp>131716362673724716</Timestamp>
       </ProjectDependency>
     </AllDependencies>
     <RootDirectory>
@@ -259,6 +259,9 @@
           <RelativePath>Inc\gpio.h</RelativePath>
         </VirtualFileSnapshot>
         <VirtualFileSnapshot>
+          <RelativePath>Inc\dma.h</RelativePath>
+        </VirtualFileSnapshot>
+        <VirtualFileSnapshot>
           <RelativePath>Inc\i2s.h</RelativePath>
         </VirtualFileSnapshot>
         <VirtualFileSnapshot>
@@ -275,6 +278,9 @@
         </VirtualFileSnapshot>
         <VirtualFileSnapshot>
           <RelativePath>Src\gpio.c</RelativePath>
+        </VirtualFileSnapshot>
+        <VirtualFileSnapshot>
+          <RelativePath>Src\dma.c</RelativePath>
         </VirtualFileSnapshot>
         <VirtualFileSnapshot>
           <RelativePath>Src\i2s.c</RelativePath>
